@@ -34,10 +34,14 @@ A user will be able to:
 
 ### Wireframes
 
+General Site Layout
 ![img_4123](https://git.generalassemb.ly/storage/user/8942/files/f1f19436-22d6-11e8-8969-b10559a7f053)
 
+Schema
+![fullsizerender 2](https://git.generalassemb.ly/storage/user/8942/files/2b263074-22e4-11e8-9f60-faac5ef7583d)
+
 ### Technologies
-Ruby on Rails, React, HTML, CSS, Postgres db
+Ruby on Rails, React, HTML, CSS, Postgres db, Axios/Fetch
 
 ### Timeline
 
@@ -51,31 +55,31 @@ Ruby on Rails, React, HTML, CSS, Postgres db
 * Begin building out React frontend. 
 
 **3/11 Sunday**
-* Continue building out React frontend. 
 * Build out React components 
-* Be able to hit Rails server with Axios or Fetch
+* Begin building out React routes 
+* Be able to hit Rails server with Axios or Fetch in React and display data
 
 **3/12 Monday**
-* Build out CRUD on the React frontend
+* Continue building out CRUD on the React frontend
 * Build out the React forms and input fields necessary to capture information to hit the database
+* Work on Get and Post methods in React
 
 **3/13 Tuesday**
-* Continue building out React CRUD
 * Have at least Post and Get working
+* Continue building out React CRUD - Update and Delete methods
 
 **3/14 Wednesday**
 * Finish with React Update and Delete methods
 * Finish up project MVP's
+* Begin styling and testing
 
 **3/15 Thursday**
-* Iron out any bugs 
+* If MVP met, work on reach goals
+* Test for any bugs 
 * Prepare presentation & readme
 * Finish styling
 
 **3/16 Friday** 
 * Presentation Day
+* Deploy to Heroku
 * Work out any last minute issues/bugs
-
-
-
-
