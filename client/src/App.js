@@ -15,70 +15,87 @@ class App extends Component {
     super(props);
     this.state = {
       recipes: [],
+      name: [],
+      instructions: [],
+      image: [],
+      user_id: [],
+      // ingredients: []
       dataLoaded: false
     }
 
   this.getAllRecipes = this.getAllRecipes.bind(this);
   // this.getAllIngredients = this.getAllIngredients.bind(this);
-  // this.handleChange = this.handleChange.bind(this);
-  // this.handleSubmit = this.handleSubmit.bind(this);
+  // this.newRecipe = this.newRecipe.bind(this);
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+  // this.changeHandler = this.changeHandler.bind(this);
   }
 
   componentDidMount() {
     this.getAllRecipes();
     // this.getAllIngredients();
+    // this.newRecipe();
+    // this.changeHandler();
   }
 
+  // getAllRecipes() {
+  //   axios({url: "http://localhost:3000/recipes"})
+  //   .then(response => {
+  //     this.setState({
+  //       recipes: response.data,
+  //       dataLoaded: true
+  //     })
+  //     console.log('data:', this.state.recipes);
+  //   });
+  // }
+
   getAllRecipes() {
-    axios({url: "http://localhost:3000/recipes"})
+    axios({
+      url: "http://localhost:3000/recipes",
+      method: "GET"
+    })
     .then(response => {
       this.setState({
         recipes: response.data,
         dataLoaded: true
       })
-      console.log('data:', this.state.recipes);
+    })
+    .catch(err => {
+      //handle errors
     });
   }
 
-  // getAllIngredients() {
-  //   axios({url: "http://localhost:3000/ingredients"})
-  //   .then(response => {
-  //     this.setState({
-  //       ingredients: response.data
-  //     })
-  //     console.log('data:', this.state.ingredients);
-  //   });
-  // }
+  handleChange(event) {
+    const key = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [key]: value
+    });
+  }
 
-  // handleChange(event) {
-  //   const key = event.target.name;
-  //   const value = event.target.value;
-  //   this.setState({
-  //     [key]: value
-  //   })
-  // }
-
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   const url = 'https//localhost:3000/recipes';
-  //   const data = {
-  //     recipe: {
-  //       name: this.state.name,
-  //       instructions: this.state.instructions,
-  //       image: this.state.image
-  //   }
-  // };
-
-  // fetch(url, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-type': 'application/json'
-  //   },
-  //   body: JSON.stringify(data)
-  // })
-  //   .then(response => response.json())
-  //   .then(data => console.log("Successfully created a new recipe!", data));
-  // }
+  // post method to create a new recipe 
+  handleSubmit(event) {
+    const data = {
+      recipe: {
+        name: this.state.name,
+        instructions: this.state.instructions,
+        image: this.state.image,
+        user_id: this.state.user_id
+      }
+    };
+    console.log('this is a new recipe!', data);
+    event.preventDefault();
+    axios('http://localhost:3000/recipes', {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${TokenService.read()}`,
+      },
+      method: 'POST',
+      data
+    }).then(response => {
+      console.log('POST success!, response.data:', response.data);
+    });
+  }
 
 
   // api call for creating a new user
@@ -139,21 +156,39 @@ class App extends Component {
   }
 
   render() {
-    // {this.state.recipesData.map(el => {
     return (
       <div>
         <div>
-        {/*<div data-solo={el.id} key={el.id}>
-          <div className="recipes-div">
-            <p>Name: {el.name}</p>
-            <p>Instructions: {el.directions}</p>
-            <p>Image: {el.image}</p>
-          </div>*/}
-
-          Weird button: <button onClick={this.authClick.bind(this)}>Weird Button</button>
+          Display Data: <button onClick={this.authClick.bind(this)}>Display Data</button>
           <p><button onClick={this.checkLogin.bind(this)}>Check If Logged In</button></p>
           <p><button onClick={this.logout.bind(this)}>Logout</button></p>
         </div>
+
+        <form onSubmit={this.handleSubmit}>
+          <h3>Add a New Recipe</h3>
+          <label htmlFor="name">
+            Name:
+            <input type="text" name="name" placeholder="Recipe name" onChange={this.handleChange} />
+          </label>
+          <label htmlFor="instructions">
+            Instructions:
+            <input type="text" name="instructions" placeholder="Enter instructions" onChange={this.handleChange} />
+          </label>
+          <label htmlFor="image">
+            Image:
+            <input type="text" name="image" placeholder="Enter an image URL" onChange={this.handleChange} />
+          </label>
+          <label htmlFor="user_id">
+            User Id:
+            <input type="text" name="user_id" placeholder="Enter a user id" onChange={this.handleChange} />
+          </label>
+          <button>Submit</button>
+        </form>
+        <p>Name: {this.state.name}</p>
+        <p>Instructions: {this.state.instructions}</p>
+        <p>Image: {this.state.image}</p>
+        <p>User Id: {this.state.user_id}</p>
+
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -177,7 +212,7 @@ class App extends Component {
             <Login {...props} submit={this.login.bind(this)} />
           )} />
 
-          <Route exact path="/recipes" 
+          {/*<Route exact path="/recipes" 
           render={props => {
             return (
               <Recipes
@@ -188,7 +223,19 @@ class App extends Component {
                 />
               );
             }}
+          />*/}
+
+          <Route exact path="/recipes" component={(props) => (
+              <Recipes {...props} 
+                recipesData={this.state.recipes}
+                getAllRecipes={this.getAllRecipes}
+                dataLoaded={this.state.dataLoaded}
+                handleSubmit={this.handleSubmit}
+                handleChange={this.handleChange}
+              />
+            )}
           />
+
           </Switch>
         </BrowserRouter>
       </div>

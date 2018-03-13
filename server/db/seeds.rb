@@ -71,6 +71,9 @@ bokchoy = Recipe.create!([
   {name: "Bok Choy with Black Bean Sauce", instructions: ["Bring a large pot of salted water to a boil. Add bok choy and blanch until bright green, about 40 seconds. Transfer to a colander set in the sink and let drain well.", "While bok choy drains, combine soy sauce, white pepper, sesame oil, cornstarch, and water in a small bowl. Set aside.", "Heat vegetable oil in a wok over high heat until lightly smoking. Add garlic and black beans and cook, stirring constantly, until fragrant, about 30 seconds. Add drained bok choy and continue to cook, stirring and tossing constantly, until bok choy is almost tender, about 2 minutes.", "Push bok choy up sides of wok. Stir sauce mixture with a fork and add it to the center. Let it come to a boil (about 20 seconds), then toss with the bok choy. Serve immediately."], image: "https://www.seriouseats.com/recipes/images/2014/05/20140422-shanghai-baby-bok-choy-black-bean-sauce-08.jpg", user_id: 1}
 ]);
 
+
+# Ingredients 
+
 Ingredient.create!([
   {name: ["Kosher salt", "1 pound (450g) dried spaghetti", "1/2 cup (120ml) extra-virgin olive oil, divided
     ", "Red pepper flakes, to taste (optional)", "Minced flat-leaf parsley, for serving (optional)"], recipe_id: 1}

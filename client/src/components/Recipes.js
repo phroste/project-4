@@ -41,14 +41,15 @@ export default class Recipes extends Component {
     if (this.props.dataLoaded) {
       return (
         <div>
+          <NavBar />
           <h3>This is the Recipes page!</h3>
-          {recipeNames}
-          {recipeInstructions}
+          {/*{recipeNames}*/}
           {this.props.recipesData.map((recipe, index) => {
             return (
               <div key={index}>
-                {" "}
-                <img src={recipe.image} alt="" width="420" height="400"/>
+                {/*{" "}*/}
+                {recipe.name}
+                <img src={recipe.image} alt="" width="450" height="400"/>
               </div>
             );
           })}
@@ -58,6 +59,42 @@ export default class Recipes extends Component {
     return <div>LOADING!</div>;
   }
 }
+
+  // if (this.props.dataLoaded) {
+  //   return (
+  //     {this.props.recipesData.map(el => {
+  //       <div data-solo={el.id} key={el.id}>
+  //         <h3>This is the Recipes Page!</h3>
+  //         {el.name}
+  //         {el.image}
+  //       </div>
+  //     })
+  //     }
+  //    ) 
+  //   return <div>LOADING!</div>
+  //   }
+  // }
+
+
+//solution 2?
+// const { name, instructions, image } = this.props.recipes;
+// const recipe
+//   if (this.props.dataLoaded) {
+//     return (
+//       )
+//   }
+
+
+// if (this.props.dataLoaded) {
+//   {this.props.recipesData.map((recipe, index) => {
+//     return(
+//       <div key={index}>
+//         {recipe.name}
+//         <img src={recipe.image} width="450" height="400"/>
+//       </div>
+//     )
+//   })}
+// }
 
 // if (this.props.dataLoaded) {
 //   return (

@@ -34,7 +34,7 @@ class IngredientsController < ApplicationController
 
   private
 
-  # defining the varialbe ingredient_params...
+  # defining the variable ingredient_params...
   def ingredient_params
     params.require(:ingredient).permit(:name, :recipe_id)
   end
