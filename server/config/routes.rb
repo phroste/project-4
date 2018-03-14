@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   get 'isLoggedIn', :to => 'users#is_logged_in'
   post 'users/login', :to => 'users#login'
 
+  get "/recipes/:recipe", :to => 'recipes#show'
+
   resources :recipes
+  resources :ingredients
 end

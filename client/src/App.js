@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Recipes from './components/Recipes';
+// import SingleRecipe from './components/SingleRecipe';
 import TokenService from './services/TokenService';
 
 
@@ -15,25 +16,28 @@ class App extends Component {
     super(props);
     this.state = {
       recipes: [],
+      ingredients: [],
+      singleRecipe: [],
       name: [],
       instructions: [],
       image: [],
       user_id: [],
-      // ingredients: []
+      editingRecipe: null,
       dataLoaded: false
     }
 
   this.getAllRecipes = this.getAllRecipes.bind(this);
-  // this.getAllIngredients = this.getAllIngredients.bind(this);
-  // this.newRecipe = this.newRecipe.bind(this);
+  this.getSingleRecipe = this.getSingleRecipe.bind(this);
+  this.getAllIngredients = this.getAllIngredients.bind(this);
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
-  // this.changeHandler = this.changeHandler.bind(this);
+
+  // this.editRecipe = this.editRecipe.bind(this);
   }
 
   componentDidMount() {
     this.getAllRecipes();
-    // this.getAllIngredients();
+    this.getAllIngredients();
     // this.newRecipe();
     // this.changeHandler();
   }
@@ -61,9 +65,42 @@ class App extends Component {
       })
     })
     .catch(err => {
-      //handle errors
+      // handle errors
     });
   }
+
+  getSingleRecipe() {
+    axios({
+      url: "http://localhost:3000/recipes/1",
+      method: "GET"
+    })
+    .then(response => {
+      this.setState({
+      singleRecipe: response.data,
+      dataLoaded: true
+    })
+  })
+    .catch(err => {
+      // handle errors
+    });
+  }
+
+  getAllIngredients() {
+    axios({
+      url: "http://localhost:3000/ingredients",
+      method: "GET"
+    })
+    .then(response => {
+      this.setState({
+        ingredients: response.data,
+        dataLoaded: true
+      })
+    })
+    .catch(err => {
+      // handle errors
+    });
+  }
+
 
   handleChange(event) {
     const key = event.target.name;
@@ -97,6 +134,12 @@ class App extends Component {
     });
   }
 
+  editRecipe(id) {
+    console.log(id);
+    this.setState({
+      editingRecipe: id,
+    });
+  }
 
   // api call for creating a new user
   // note that TokenService.save with the token is called
@@ -184,10 +227,6 @@ class App extends Component {
           </label>
           <button>Submit</button>
         </form>
-        <p>Name: {this.state.name}</p>
-        <p>Instructions: {this.state.instructions}</p>
-        <p>Image: {this.state.image}</p>
-        <p>User Id: {this.state.user_id}</p>
 
         <BrowserRouter>
           <Switch>
@@ -228,13 +267,15 @@ class App extends Component {
           <Route exact path="/recipes" component={(props) => (
               <Recipes {...props} 
                 recipesData={this.state.recipes}
-                getAllRecipes={this.getAllRecipes}
+                // getAllRecipes={this.getAllRecipes}
+                ingredientsData={this.state.ingredients}
                 dataLoaded={this.state.dataLoaded}
                 handleSubmit={this.handleSubmit}
                 handleChange={this.handleChange}
               />
             )}
           />
+
 
           </Switch>
         </BrowserRouter>
