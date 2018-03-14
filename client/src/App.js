@@ -27,8 +27,10 @@ class App extends Component {
     }
 
   this.getAllRecipes = this.getAllRecipes.bind(this);
-  this.getSingleRecipe = this.getSingleRecipe.bind(this);
+  // this.getSingleRecipe = this.getSingleRecipe.bind(this);
   this.getAllIngredients = this.getAllIngredients.bind(this);
+  // this.editRecipe = this.editRecipe.bind(this);
+  // this.deleteRecipe = this.deleteRecipe.bind(this);
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -69,21 +71,23 @@ class App extends Component {
     });
   }
 
-  getSingleRecipe() {
-    axios({
-      url: "http://localhost:3000/recipes/1",
-      method: "GET"
-    })
-    .then(response => {
-      this.setState({
-      singleRecipe: response.data,
-      dataLoaded: true
-    })
-  })
-    .catch(err => {
-      // handle errors
-    });
-  }
+  // getSingleRecipe() {
+  //   axios({
+  //     url: "http://localhost:3000/recipes/:recipe",
+  //     method: "GET"
+  //   })
+  //   .then(response => {
+  //     this.setState({
+  //     singleRecipe: response.data,
+  //     dataLoaded: true
+  //   })
+  // })
+  //   .catch(err => {
+  //     // handle errors
+  //   });
+  // }
+
+
 
   getAllIngredients() {
     axios({
@@ -134,12 +138,39 @@ class App extends Component {
     });
   }
 
-  editRecipe(id) {
-    console.log(id);
-    this.setState({
-      editingRecipe: id,
-    });
-  }
+  // editRecipe(event) {
+  //   axios({
+  //     url: "http://localhost:3000/recipes",
+  //     method: "PUT"
+  //   })
+  //   .then(response => {
+  //     this.setState({
+        
+  //     }
+  //   })
+  // }
+
+  // editRecipe(id) {
+  //   console.log(id);
+  //   this.setState({
+  //     editingRecipe: id,
+  //   });
+  // }
+
+  // deleteRecipe() {
+  //   const recipeId = document.querySelector('#delete-recipe');
+  //   const recipeAttribute = document.getAttribute(recipeId);
+  //   axios({
+  //     url: `http//localhost:3000/recipes/${recipeAttribute}`,
+  //     method: 'DELETE',
+  //     headers: {
+  //       Authorization: `Bearer ${TokenService.read()}`
+  //     }
+  //   })
+  //   .then(response => {
+  //     console.log('DELETE success!')
+  //   })
+  // }
 
   // api call for creating a new user
   // note that TokenService.save with the token is called
@@ -270,8 +301,9 @@ class App extends Component {
                 // getAllRecipes={this.getAllRecipes}
                 ingredientsData={this.state.ingredients}
                 dataLoaded={this.state.dataLoaded}
-                handleSubmit={this.handleSubmit}
-                handleChange={this.handleChange}
+                // handleSubmit={this.handleSubmit}
+                // handleChange={this.handleChange}
+                // deleteRecipe={this.deleteRecipe}
               />
             )}
           />

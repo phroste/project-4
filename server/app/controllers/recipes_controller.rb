@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
     render json: recipes
   end
 
-  # get method
+  # get method for individual recipe
   def show
     recipe = Recipe.find(params[:id])
     render json: recipe
