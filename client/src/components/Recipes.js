@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import axios from 'axios'
+import TokenService from '.././services/TokenService';
+
 
 export default class Recipes extends Component {
   constructor(props){
@@ -11,8 +13,12 @@ export default class Recipes extends Component {
     }
   }
 
-   deleteRecipe(id) {
+  deleteRecipe(id) {
     axios({
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${TokenService.read()}`,
+      },
       url: `http://localhost:3000/recipes/${id}`,
       method: 'DELETE'
     })
@@ -20,9 +26,27 @@ export default class Recipes extends Component {
     console.log('Recipe DELETED!')
     })
     .catch(err => {
-      console.log("there is an error in delete-recipe:", err)
+      console.log("there is an error in deleteRecipe:", err)
     })
   }
+
+  // editRecipe(id) {
+  //   axios({
+  //     header: {
+  //       'Content-type': 'application/json',
+  //       Authorization: `Bearer ${TokenService.read()}`,
+  //     },
+  //     url: `http://localhost:3000/recipes/${id}`,
+  //     method: 'PUT'
+  //   })
+  //   .then(() => {
+  //     console.log('Recipe EDITED!')
+  //   })
+  //   .catch(err => {
+  //     console.log("there is an error in editRecipe:", err)
+  //   })
+  // }
+
 
   render() {
     console.log("this is the mapped recipes!", this.props.recipesData);
@@ -40,25 +64,7 @@ export default class Recipes extends Component {
     // const recipeImages = this.props.recipesData.map((recipe, index) =>{
     //   return <div key={index}>{recipe.image}</div>
     //   })
-
-  // deleteRecipe() {
-  //   const recipeId = document.querySelector('#delete-recipe');
-  //   const recipeAttribute = document.getAttribute(recipeId);
-  //   axios({
-  //     url: `http//localhost:3000/recipes/${recipeAttribute}`,
-  //     method: 'DELETE',
-  //     headers: {
-  //       Authorization: `Bearer ${TokenService.read()}`
-  //     }
-  //   })
-  //   .then(response => {
-  //     console.log('DELETE success!')
-  //   })
-  // }
-
- 
-
-{/*<button id='delete-recipe' data-delete={recipe.id}>Delete Recipe</button>*/}
+// 
 
 // WORKING!!!!
     if (this.props.dataLoaded) {
@@ -66,15 +72,17 @@ export default class Recipes extends Component {
         <div>
           <NavBar />
           <h3>This is the Recipes page!</h3>
+          <p><Link to="/recipes/new">Add a New Recipe</Link></p>
           {/*{recipeNames}*/}
           {this.props.recipesData.map((recipe, index) => {
             return (
               <div key={index}>
-                {/*{" "}*/}
                 {recipe.name}
                 <br />
-                <button>Edit Recipe</button>
-                <button onClick={this.deleteRecipe.bind(this, recipe.id)}>Delete Recipe</button>
+                {/*<button onClick=
+                {this.editRecipe.bind(this, recipe.id)}>Edit Recipe</button>*/}
+                <button onClick=
+                {this.deleteRecipe.bind(this, recipe.id)}>Delete Recipe</button>
                 <img src={recipe.image} alt="" width="450" height="400"/>
 
               </div>

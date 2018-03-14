@@ -11,6 +11,7 @@ export default class Login extends Component {
   onSubmit(data) {
     console.log(`handling submit: ${data}`);
     this.props.submit(data);
+    this.props.history.push('/recipes');
   }
 
 

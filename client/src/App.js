@@ -6,7 +6,9 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Recipes from './components/Recipes';
-// import SingleRecipe from './components/SingleRecipe';
+import NewRecipe from './components/NewRecipe';
+import SingleRecipe from './components/SingleRecipe';
+import EditRecipe from './components/EditRecipe';
 import TokenService from './services/TokenService';
 
 
@@ -18,11 +20,11 @@ class App extends Component {
       recipes: [],
       ingredients: [],
       singleRecipe: [],
-      name: [],
-      instructions: [],
-      image: [],
-      user_id: [],
-      editingRecipe: null,
+      // name: [],
+      // instructions: [],
+      // image: [],
+      // user_id: [],
+      // editingRecipe: null,
       dataLoaded: false
     }
 
@@ -31,8 +33,8 @@ class App extends Component {
   this.getAllIngredients = this.getAllIngredients.bind(this);
   // this.editRecipe = this.editRecipe.bind(this);
   // this.deleteRecipe = this.deleteRecipe.bind(this);
-  this.handleChange = this.handleChange.bind(this);
-  this.handleSubmit = this.handleSubmit.bind(this);
+  // this.handleChange = this.handleChange.bind(this);
+  // this.handleSubmit = this.handleSubmit.bind(this);
 
   // this.editRecipe = this.editRecipe.bind(this);
   }
@@ -44,19 +46,12 @@ class App extends Component {
     // this.changeHandler();
   }
 
-  // getAllRecipes() {
-  //   axios({url: "http://localhost:3000/recipes"})
-  //   .then(response => {
-  //     this.setState({
-  //       recipes: response.data,
-  //       dataLoaded: true
-  //     })
-  //     console.log('data:', this.state.recipes);
-  //   });
-  // }
-
   getAllRecipes() {
     axios({
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${TokenService.read()}`,
+      },
       url: "http://localhost:3000/recipes",
       method: "GET"
     })
@@ -88,9 +83,12 @@ class App extends Component {
   // }
 
 
-
   getAllIngredients() {
     axios({
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${TokenService.read()}`,
+      },
       url: "http://localhost:3000/ingredients",
       method: "GET"
     })
@@ -106,70 +104,36 @@ class App extends Component {
   }
 
 
-  handleChange(event) {
-    const key = event.target.name;
-    const value = event.target.value;
-    this.setState({
-      [key]: value
-    });
-  }
-
-  // post method to create a new recipe 
-  handleSubmit(event) {
-    const data = {
-      recipe: {
-        name: this.state.name,
-        instructions: this.state.instructions,
-        image: this.state.image,
-        user_id: this.state.user_id
-      }
-    };
-    console.log('this is a new recipe!', data);
-    event.preventDefault();
-    axios('http://localhost:3000/recipes', {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${TokenService.read()}`,
-      },
-      method: 'POST',
-      data
-    }).then(response => {
-      console.log('POST success!, response.data:', response.data);
-    });
-  }
-
-  // editRecipe(event) {
-  //   axios({
-  //     url: "http://localhost:3000/recipes",
-  //     method: "PUT"
-  //   })
-  //   .then(response => {
-  //     this.setState({
-        
-  //     }
-  //   })
-  // }
-
-  // editRecipe(id) {
-  //   console.log(id);
+  // handleChange(event) {
+  //   const key = event.target.name;
+  //   const value = event.target.value;
   //   this.setState({
-  //     editingRecipe: id,
+  //     [key]: value
   //   });
   // }
 
-  // deleteRecipe() {
-  //   const recipeId = document.querySelector('#delete-recipe');
-  //   const recipeAttribute = document.getAttribute(recipeId);
-  //   axios({
-  //     url: `http//localhost:3000/recipes/${recipeAttribute}`,
-  //     method: 'DELETE',
-  //     headers: {
-  //       Authorization: `Bearer ${TokenService.read()}`
+  // // post method to create a new recipe 
+  // handleSubmit(event) {
+  //   const data = {
+  //     recipe: {
+  //       name: this.state.name,
+  //       instructions: this.state.instructions,
+  //       image: this.state.image,
+  //       user_id: this.state.user_id
   //     }
-  //   })
-  //   .then(response => {
-  //     console.log('DELETE success!')
-  //   })
+  //   };
+  //   console.log('this is a new recipe!', data);
+  //   event.preventDefault();
+  //   axios('http://localhost:3000/recipes', {
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //       Authorization: `Bearer ${TokenService.read()}`,
+  //     },
+  //     method: 'POST',
+  //     data
+  //   }).then(response => {
+  //     console.log('POST success!, response.data:', response.data);
+  //   });
   // }
 
   // api call for creating a new user
@@ -238,7 +202,7 @@ class App extends Component {
           <p><button onClick={this.logout.bind(this)}>Logout</button></p>
         </div>
 
-        <form onSubmit={this.handleSubmit}>
+        {/*<form onSubmit={this.handleSubmit}>
           <h3>Add a New Recipe</h3>
           <label htmlFor="name">
             Name:
@@ -257,7 +221,7 @@ class App extends Component {
             <input type="text" name="user_id" placeholder="Enter a user id" onChange={this.handleChange} />
           </label>
           <button>Submit</button>
-        </form>
+        </form>*/}
 
         <BrowserRouter>
           <Switch>
@@ -308,6 +272,31 @@ class App extends Component {
             )}
           />
 
+          {/*<Route exact path="/recipes/new" component={(props) => (
+            <NewRecipe {...props}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              />
+            )}
+          />*/}
+
+          <Route exact path="/recipes/new"
+            render={props => {
+              return (
+                <NewRecipe 
+                  {...props}
+                  handleSubmit={this.handleSubmit}
+                  handleChange={this.handleChange}
+                />
+              );
+            }}
+          />
+
+          <Route exact path="/recipes/:id" 
+          component={SingleRecipe}/>
+
+          <Route exact path="/recipes/:id/edit" 
+          component={EditRecipe}/>
 
           </Switch>
         </BrowserRouter>

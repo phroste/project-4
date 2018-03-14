@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  # before_action :ensure_signed_in
+  before_action :ensure_signed_in
 
   def index
     recipes = Recipe.all
