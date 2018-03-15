@@ -292,8 +292,20 @@ class App extends Component {
             }}
           />
 
-          <Route exact path="/recipes/:id" 
-          component={SingleRecipe}/>
+          {/*<Route exact path="/recipes/:id" 
+          component={SingleRecipe}/>*/}
+
+          <Route exact path="/recipes/:id"
+            render={props => {
+              return (
+                <SingleRecipe 
+                  {...props} 
+                  getAllRecipes={this.getAllRecipes}
+                  getAllIngredients={this.getAllIngredients} 
+                />
+              );
+            }}
+          />
 
           <Route exact path="/recipes/:id/edit" 
           component={EditRecipe}/>

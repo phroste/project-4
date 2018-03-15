@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
-  
+  before_action :ensure_signed_in
+
   def index
     ingredients = Ingredient.all
     render json: ingredients
@@ -7,7 +8,10 @@ class IngredientsController < ApplicationController
 
   # get method
   def show
-    ingredient = Ingredient.find(params[:id])
+    # ingredient = Ingredient.find(params[:id])
+    ingredient = Ingredient.find_by(recipe_id: params[:id])
+    p params 
+    p ingredient
     render json: ingredient
   end
 

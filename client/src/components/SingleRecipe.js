@@ -1,21 +1,52 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import NavBar from "./NavBar";
+import RecipeItem from "./RecipeItem";
+import NewRecipe from "./NewRecipe";
+import Recipes from "./Recipes";
+import NavBar from "./NavBar"
+import axios from 'axios';
+import TokenService from '.././services/TokenService';
+
 
 export default class SingleRecipe extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ingredients: [],
+      dataLoaded: false
+    }
+    // this.recipeListItem = this.recipeListItem.bind(this);
+    this.getSingleIngredient = this.getSingleIngredient.bind(this);
+  }
 
-  getSingleRecipe() {
+  // recipeListItem(recipeDatum, index) {
+  //   return (
+  //     <recipeItem
+  //       recipeDatum={recipeDatum}
+  //       index={index}
+  //       getAllRecipes={this.props.getAllRecipes}
+  //       getAllIngredients={this.props.getAllIngredients}
+  //     />
+  //   );
+  // }
+
+  getSingleIngredient(id) {
     axios({
-      url: "http://localhost:3000/recipes/:id}",
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${TokenService.read()}`,
+      },
+      url: `http://localhost:3000/ingredients/${id}`,
       method: "GET"
     })
     .then(response => {
       this.setState({
-      singleRecipe: response.data,
-      dataLoaded: true
+        ingredients: response.data,
+        dataLoaded: true
+      })
+      console.log('getSingleIngredient button clicked!')
+      console.log(JSON.parse(response.data.name))
     })
-  })
     .catch(err => {
       // handle errors
     });
@@ -23,13 +54,22 @@ export default class SingleRecipe extends Component {
 
   render() {
     return (
-      <div>
-      <NavBar />
-        <h3>Hello from the SingleRecipe Component!</h3>
-        <Link to="/recipes/1/edit"><button>Edit Recipe</button></Link>
+      <div> 
+        <NavBar />
+           {this.getSingleIngredient.response.data.map((ingredient, index) => {
+            return (
+              <div key={index}>
+                <ol>{ingredient.name}</ol>
+              </div>
+            );
+          })}
+
+        <h1>{this.props.match.params.id}</h1>
+        <button onClick={()=> this.getSingleIngredient(this.props.match.params.id)}>Ingredient</button>
+
+        <Link to="/recipes">Back to recipes list</Link>
+
       </div>
-    )
+    );
   }
 }
-
-    
