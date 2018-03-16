@@ -18,6 +18,10 @@ class UsersController < ApplicationController
       password: password,
       username: username
     })
+  #   new_user = User.new({
+  #   password: password,
+  #   username: username
+  # })
 
 
     if new_user
@@ -27,6 +31,13 @@ class UsersController < ApplicationController
       render nothing: true, status: 401
     end
   end
+  #     if new_user.valid?
+  #     new_user.save!
+  #     render json: {token: gen_token(new_user.id)}
+  #   else
+  #     render nothing: true, status: 401
+  #   end
+  # end
 
   def index
     @users = User.all
@@ -45,7 +56,8 @@ class UsersController < ApplicationController
 
     user = User.find_from_credentials username, password
     if user.nil?
-      render json: { err: 'No User' }
+      # render json: { err: 'No User' }
+      render nothing: true, status: 401
     else 
       render json: {user: user, token: gen_token(user.id)}
     end

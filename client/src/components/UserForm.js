@@ -31,17 +31,19 @@ export default class UserForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>Name
+        <label className="login-name">Name
           <input 
             type="text" 
             name="username" 
+            className="login-input"
             onChange={this.handleChange}
             value={this.state.username} />
         </label>
-        <label>Password
+        <label className="login-name">Password
           <input 
             type="password" 
             name="password" 
+            className="login-input"
             onChange={this.handleChange}
             value={this.state.password} />
         </label>

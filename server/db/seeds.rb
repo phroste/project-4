@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create!(name: 'Luke', movie: movies.first)
-Recipe.destroy_all
-Ingredient.destroy_all
+# Recipe.destroy_all
+# Ingredient.destroy_all
 User.create!({username: 'hello123', password:'hello123'})
 
 aglio = Recipe.create!([

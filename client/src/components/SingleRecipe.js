@@ -125,17 +125,24 @@ export default class SingleRecipe extends Component {
           {showRecipes.map((recipe, index) => {
             return (
               <div key={index}>
-              <p className="rec-name">{recipe.name}</p>
-              <img className="rec-img" src={recipe.image} alt="" width="450" height="400"/>              
-              {recipe.instructions}
+                <div className="rec-name">
+                  <p>{recipe.name}</p>
+                </div>
+                <div className="rec-img">
+                  <img src={recipe.image} alt="" width="450" height="400"/>  
+                </div>
+                <div className="rec-instructions">
+                  {recipe.instructions}
+                </div>
               </div>
             );
            })}
+          <h3>Ingredients</h3>
            {showIngredients.map((ingredient, index) => {
             return (
               <div key={index}>
                 <ol>
-                <ul>{ingredient}</ul>
+                  <ul className="ingredients">{ingredient}</ul>
                 </ol>
               </div>
             );
@@ -146,7 +153,7 @@ export default class SingleRecipe extends Component {
 
         {/*<button onClick={()=> this.getSingleRecipe(this.props.match.params.id)}>Show Recipe</button>*/}
 
-        <Link to="/recipes">Back to recipes list</Link>
+        <Link to="/recipes"><h3 className="recipes-home">Back to recipes list</h3></Link>
 
       </div>
     );

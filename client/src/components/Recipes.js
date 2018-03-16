@@ -12,6 +12,8 @@ export default class Recipes extends Component {
 
     }
     this.recipePage = this.recipePage.bind(this);
+    this.deleteConfirmation = this.deleteConfirmation.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
   }
 
   deleteRecipe(id) {
@@ -33,14 +35,15 @@ export default class Recipes extends Component {
 
 
   deleteConfirmation(e){
-    e.preventDefault();
+    // e.preventDefault();
     if ( 
       window.confirm (
-        "Are you sure to delete this recipe?"
+        "Are you sure you want to delete this recipe?"
       )) 
     {
-      this.deleteRecipe()
+      // this.deleteRecipe()
     }
+     console.log('delete confirmation!')
   }
 
   recipePage(recipeId){
@@ -88,7 +91,7 @@ export default class Recipes extends Component {
 // WORKING!!!!
     if (this.props.dataLoaded) {
       return (
-        <div>
+        <div className="recipes-page">
           <NavBar />
           <h3>This is the Recipes page!</h3>
           <h2><Link to="/recipes/new">Add a New Recipe</Link></h2>
@@ -102,9 +105,14 @@ export default class Recipes extends Component {
                 {/*<button onClick=
                 {this.editRecipe.bind(this, recipe.id)}>Edit Recipe</button>*/}
                 <img className="recipe-img" onClick={() => this.recipePage(recipe.id)} src={recipe.image} alt="" width="450" height="400"/>
-                <button onClick=
-                {this.deleteRecipe.bind(this, recipe.id)}>Delete Recipe</button>
 
+                {/*<button className="delete-button" onClick=
+                {this.deleteRecipe.bind(this, recipe.id)}>Delete Recipe</button>*/}
+                {/*<button className="delete-button" 
+                onClick={() => 
+                {this.deleteRecipe(recipe.id)}}>Delete Recipe</button>*/}
+                <button className="delete-button" 
+                onClick={() => {this.deleteRecipe(recipe.id)}}>Delete Recipe</button>
               </div>
             );
           })}

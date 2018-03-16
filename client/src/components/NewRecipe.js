@@ -78,25 +78,26 @@ export default class NewRecipe extends Component {
     return (
       <div>
       <NavBar />
-      <h3>Hello from NewRecipe Component!</h3>
         <form onSubmit={this.handleSubmit}>
             <h3>Add a New Recipe</h3>
-            <label htmlFor="name">
-              Name:
-              <input type="text" name="name" placeholder="Recipe name" onChange={this.handleNameChange.bind(this)} />
-            </label>
-            <label htmlFor="instructions">
-              Instructions:
-              <input type="text" name="instructions" placeholder="Enter instructions" onChange={this.handleInstructionsChange.bind(this)} />
-            </label>
-            <label htmlFor="image">
-              Image:
-              <input type="text" name="image" placeholder="Enter an image URL" onChange={this.handleImageChange.bind(this)} />
-            </label>
-            <label htmlFor="user_id">
-              User Id:
-              <input type="text" name="user_id" placeholder="Enter a user id" onChange={this.handleUserIdChange.bind(this)} />
-            </label>
+            <div className="newrecipe-div">
+              <label htmlFor="name">
+                Name:
+                <input className="newrecipe-input" type="text" name="name" placeholder="Recipe name" onChange={this.handleNameChange.bind(this)} />
+              </label>
+              <label htmlFor="instructions">
+                Instructions:
+                <input className="newrecipe-input" type="text" name="instructions" placeholder="Enter instructions" onChange={this.handleInstructionsChange.bind(this)} />
+              </label>
+              <label htmlFor="image">
+                Image:
+                <input className="newrecipe-input" type="text" name="image" placeholder="Enter an image URL" onChange={this.handleImageChange.bind(this)} />
+              </label>
+              <label htmlFor="user_id">
+                User Id:
+                <input className="newrecipe-input" type="text" name="user_id" placeholder="Enter a user id" onChange={this.handleUserIdChange.bind(this)} />
+              </label>
+            </div>
             <button>Submit</button>
         </form>
       </div>

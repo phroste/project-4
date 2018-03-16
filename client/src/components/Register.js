@@ -15,10 +15,12 @@ export default class Register extends Component {
   render() {
     // the onSubmit method is passed down to the UserForm as a prop
     return (
-      <div>
-        This is the register page!
-        <UserForm submit={this.onSubmit} />
-        <p><Link to="/"><button>Back Home</button></Link></p>
+      <div className="login-bg">
+        <div className="login-div">
+          <p className="registration">Register Here</p>
+          <UserForm className="registration" submit={this.onSubmit} />
+          <p className="registration"><Link to="/"><button>Back Home</button></Link></p>
+        </div>
       </div>
     )
   }

@@ -11,12 +11,15 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
-        <NavBar />
-        <div>This is the homepage!</div>
-        <Link to="/register"><button>Register</button></Link>
-        <br />
-        <Link to="/login"><button>Login</button></Link>
+      <div className="login-bg">
+        {/*<NavBar />*/}
+        <div className="login-div">
+          <p className="login-p">Create an Account</p>
+          <Link to="/register"><button>Register</button></Link>
+          <br />
+          <p className="login-p">Already have an account?</p>
+          <Link to="/login"><button>Login</button></Link>
+        </div>
       </div>
     )
   }

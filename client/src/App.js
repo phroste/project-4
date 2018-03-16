@@ -197,11 +197,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div>
+        {/*<div>
           Display Data: <button onClick={this.authClick.bind(this)}>Display Data</button>
           <p><button onClick={this.checkLogin.bind(this)}>Check If Logged In</button></p>
           <p><button onClick={this.logout.bind(this)}>Logout</button></p>
-        </div>
+        </div>*/}
 
         {/*<form onSubmit={this.handleSubmit}>
           <h3>Add a New Recipe</h3>
