@@ -12,7 +12,8 @@ class IngredientsController < ApplicationController
     ingredient = Ingredient.find_by(recipe_id: params[:id])
     p params 
     p ingredient
-    render json: ingredient
+    ingredients = JSON.parse ingredient.name
+    render json: {id: ingredient.id, recipe_id: ingredient.recipe_id, ingredients: ingredients }
   end
 
   # post method

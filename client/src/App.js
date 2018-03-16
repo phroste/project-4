@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css'
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import logo from './logo.svg';
@@ -300,8 +301,8 @@ class App extends Component {
               return (
                 <SingleRecipe 
                   {...props} 
-                  getAllRecipes={this.getAllRecipes}
-                  getAllIngredients={this.getAllIngredients} 
+                  getAllRecipes={this.state.recipes}
+                  getAllIngredients={this.state.ingredients} 
                 />
               );
             }}

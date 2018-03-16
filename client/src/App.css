@@ -1,4 +1,4 @@
-.App {
+/*.App {
   text-align: center;
 }
 
@@ -26,3 +26,30 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+*/
+
+* {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar {
+  font-size: 3vw;
+}
+
+.recipe-name,
+.recipe-img {
+  cursor: pointer;
+}
+
+.rec-name {
+
+}
+
+.rec-img {
+  
+}
+

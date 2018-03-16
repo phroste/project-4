@@ -9,6 +9,8 @@ class RecipesController < ApplicationController
   # get method for individual recipe
   def show
     recipe = Recipe.find(params[:id])
+    # recipes = Recipe.find_by(params[:id])
+    # render json: recipe
     render json: recipe
   end
 

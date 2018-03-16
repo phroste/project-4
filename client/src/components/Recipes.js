@@ -11,6 +11,7 @@ export default class Recipes extends Component {
     this.state = {
 
     }
+    this.recipePage = this.recipePage.bind(this);
   }
 
   deleteRecipe(id) {
@@ -29,6 +30,24 @@ export default class Recipes extends Component {
       console.log("there is an error in deleteRecipe:", err)
     })
   }
+
+
+  deleteConfirmation(e){
+    e.preventDefault();
+    if ( 
+      window.confirm (
+        "Are you sure to delete this recipe?"
+      )) 
+    {
+      this.deleteRecipe()
+    }
+  }
+
+  recipePage(recipeId){
+    this.setState(this.props.history.push(`/recipes/${recipeId}`))
+  }
+
+
 
   // editRecipe(id) {
   //   axios({
@@ -72,18 +91,19 @@ export default class Recipes extends Component {
         <div>
           <NavBar />
           <h3>This is the Recipes page!</h3>
-          <p><Link to="/recipes/new">Add a New Recipe</Link></p>
+          <h2><Link to="/recipes/new">Add a New Recipe</Link></h2>
           {/*{recipeNames}*/}
           {this.props.recipesData.map((recipe, index) => {
             return (
               <div key={index}>
-                {recipe.name}
+                <p className="recipe-name" 
+                onClick={() => this.recipePage(recipe.id)}>{recipe.name}</p>
                 <br />
                 {/*<button onClick=
                 {this.editRecipe.bind(this, recipe.id)}>Edit Recipe</button>*/}
+                <img className="recipe-img" onClick={() => this.recipePage(recipe.id)} src={recipe.image} alt="" width="450" height="400"/>
                 <button onClick=
                 {this.deleteRecipe.bind(this, recipe.id)}>Delete Recipe</button>
-                <img src={recipe.image} alt="" width="450" height="400"/>
 
               </div>
             );
