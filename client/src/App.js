@@ -21,30 +21,16 @@ class App extends Component {
       recipes: [],
       ingredients: [],
       singleRecipe: [],
-      // name: [],
-      // instructions: [],
-      // image: [],
-      // user_id: [],
-      // editingRecipe: null,
       dataLoaded: false
     }
 
   this.getAllRecipes = this.getAllRecipes.bind(this);
-  // this.getSingleRecipe = this.getSingleRecipe.bind(this);
   this.getAllIngredients = this.getAllIngredients.bind(this);
-  // this.editRecipe = this.editRecipe.bind(this);
-  // this.deleteRecipe = this.deleteRecipe.bind(this);
-  // this.handleChange = this.handleChange.bind(this);
-  // this.handleSubmit = this.handleSubmit.bind(this);
-
-  // this.editRecipe = this.editRecipe.bind(this);
   }
 
   componentDidMount() {
     this.getAllRecipes();
     this.getAllIngredients();
-    // this.newRecipe();
-    // this.changeHandler();
   }
 
   getAllRecipes() {
@@ -66,22 +52,6 @@ class App extends Component {
       // handle errors
     });
   }
-
-  // getSingleRecipe() {
-  //   axios({
-  //     url: "http://localhost:3000/recipes/:recipe",
-  //     method: "GET"
-  //   })
-  //   .then(response => {
-  //     this.setState({
-  //     singleRecipe: response.data,
-  //     dataLoaded: true
-  //   })
-  // })
-  //   .catch(err => {
-  //     // handle errors
-  //   });
-  // }
 
 
   getAllIngredients() {
@@ -105,37 +75,7 @@ class App extends Component {
   }
 
 
-  // handleChange(event) {
-  //   const key = event.target.name;
-  //   const value = event.target.value;
-  //   this.setState({
-  //     [key]: value
-  //   });
-  // }
 
-  // // post method to create a new recipe 
-  // handleSubmit(event) {
-  //   const data = {
-  //     recipe: {
-  //       name: this.state.name,
-  //       instructions: this.state.instructions,
-  //       image: this.state.image,
-  //       user_id: this.state.user_id
-  //     }
-  //   };
-  //   console.log('this is a new recipe!', data);
-  //   event.preventDefault();
-  //   axios('http://localhost:3000/recipes', {
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //       Authorization: `Bearer ${TokenService.read()}`,
-  //     },
-  //     method: 'POST',
-  //     data
-  //   }).then(response => {
-  //     console.log('POST success!, response.data:', response.data);
-  //   });
-  // }
 
   // api call for creating a new user
   // note that TokenService.save with the token is called
@@ -197,48 +137,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/*<div>
-          Display Data: <button onClick={this.authClick.bind(this)}>Display Data</button>
-          <p><button onClick={this.checkLogin.bind(this)}>Check If Logged In</button></p>
-          <p><button onClick={this.logout.bind(this)}>Logout</button></p>
-        </div>*/}
-
-        {/*<form onSubmit={this.handleSubmit}>
-          <h3>Add a New Recipe</h3>
-          <label htmlFor="name">
-            Name:
-            <input type="text" name="name" placeholder="Recipe name" onChange={this.handleChange} />
-          </label>
-          <label htmlFor="instructions">
-            Instructions:
-            <input type="text" name="instructions" placeholder="Enter instructions" onChange={this.handleChange} />
-          </label>
-          <label htmlFor="image">
-            Image:
-            <input type="text" name="image" placeholder="Enter an image URL" onChange={this.handleChange} />
-          </label>
-          <label htmlFor="user_id">
-            User Id:
-            <input type="text" name="user_id" placeholder="Enter a user id" onChange={this.handleChange} />
-          </label>
-          <button>Submit</button>
-        </form>*/}
-
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
-            {/*<Route 
-              exact 
-              path="/" 
-              render={props => {
-                return (
-                  <Home 
-                  {...props} 
-                  recipesData={this.getAllRecipes}
-                />
-               );
-              }}
-            />*/}
+
             <Route exact path="/register" component={(props) => (
                 <Register {...props} submit={this.register.bind(this)} />
             )} />
@@ -247,39 +149,14 @@ class App extends Component {
             <Login {...props} submit={this.login.bind(this)} />
           )} />
 
-          {/*<Route exact path="/recipes" 
-          render={props => {
-            return (
-              <Recipes
-                {...props}
-                recipesData={this.state.recipes}
-                getAllRecipes={this.getAllRecipes}
-                dataLoaded={this.state.dataLoaded}
-                />
-              );
-            }}
-          />*/}
-
           <Route exact path="/recipes" component={(props) => (
               <Recipes {...props} 
                 recipesData={this.state.recipes}
-                // getAllRecipes={this.getAllRecipes}
                 ingredientsData={this.state.ingredients}
                 dataLoaded={this.state.dataLoaded}
-                // handleSubmit={this.handleSubmit}
-                // handleChange={this.handleChange}
-                // deleteRecipe={this.deleteRecipe}
               />
             )}
           />
-
-          {/*<Route exact path="/recipes/new" component={(props) => (
-            <NewRecipe {...props}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              />
-            )}
-          />*/}
 
           <Route exact path="/recipes/new"
             render={props => {
@@ -292,9 +169,6 @@ class App extends Component {
               );
             }}
           />
-
-          {/*<Route exact path="/recipes/:id" 
-          component={SingleRecipe}/>*/}
 
           <Route exact path="/recipes/:id"
             render={props => {

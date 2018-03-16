@@ -26,38 +26,6 @@ export default class SingleRecipe extends Component {
     this.getSingleIngredient(this.props.match.params.id);
   }
 
-  // recipeListItem(recipeDatum, index) {
-  //   return (
-  //     <recipeItem
-  //       recipeDatum={recipeDatum}
-  //       index={index}
-  //       getAllRecipes={this.props.getAllRecipes}
-  //       getAllIngredients={this.props.getAllIngredients}
-  //     />
-  //   );
-  // }
-
-  // getSingleRecipe(id) {
-  //   axios({
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //       Authorization: `Bearer ${TokenService.read()}`,
-  //     },
-  //     url: `http://localhost:3000/recipes/${id}`,
-  //     method: "GET"
-  //   })
-  //   .then(response => {
-  //     this.setState({
-  //       recipes: response.data,
-  //       dataLoaded: true
-  //     })
-  //     console.log('getSingleRecipe response:', response.data.name)
-  //   })
-  //   .catch(err => {
-  //     // handle errors
-  //   });
-  // }
-
   getSingleRecipe(id) {
     axios({
       headers: {
