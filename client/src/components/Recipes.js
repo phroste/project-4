@@ -119,7 +119,7 @@ export default class Recipes extends Component {
         </div>
       );
     }
-    return <div>LOADING!</div>;
+    return <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>;
   }
 }
 

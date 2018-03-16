@@ -7,7 +7,7 @@
 #   Character.create!(name: 'Luke', movie: movies.first)
 # Recipe.destroy_all
 # Ingredient.destroy_all
-User.create!({username: 'hello123', password:'hello123'})
+# User.create!({username: 'hello123', password:'hello123'})
 
 aglio = Recipe.create!([
   {name: "Spaghetti Aglio e Olio", instructions: ["In a pot of salted boiling water, cook spaghetti until just shy of al dente (about 1 minute less than the package directs).", "Reserve pasta cooking water.","Meanwhile, in a large skillet, combine 6 tablespoons oil and garlic.","Add pinch of red pepper flakes, if using.","Cook over medium heat until garlic is very lightly golden, about 5 minutes.","(Adjust heat as necessary to keep it gently sizzling.) 3.","Transfer pasta to skillet along with 1/2 cup pasta water, increase heat to high, and cook, stirring and tossing rapidly, until a creamy, emulsified sauce forms and coats the noodles.","Remove from heat, add remaining 2 tablespoons olive oil, and stir well to combine.","Mix in parsley, if using, and serve right away."], image: "https://www.seriouseats.com/images/2016/02/20160219-pasta-aglio-olio-vicky-wasik-4.jpg", user_id: 1} 
