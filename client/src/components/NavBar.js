@@ -19,13 +19,15 @@ export default class NavBar extends Component {
     return (
         <div className="App">
           <nav className="navbar">
-            <h2>React Recipes</h2>
-            <Link to="/">Home </Link>
-            <Link to="/recipes">Recipes </Link>
-            <Link to="/recipes/new">Add Recipes </Link>
-            <Link onClick={this.logout} to="/">
-              Logout
-            </Link>
+            <h2 className="title">React Recipes</h2>
+            <div className="navbar-links">
+              <Link to="/">Login </Link>
+              <Link to="/recipes">Recipes </Link>
+              <Link className="add-recipes-link" to="/recipes/new">Add Recipes </Link>
+              <Link onClick={this.logout} to="/">
+                Logout
+              </Link>
+            </div>
           </nav>
         </div>
     );

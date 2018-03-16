@@ -79,7 +79,7 @@ export default class NewRecipe extends Component {
       <div>
       <NavBar />
         <form onSubmit={this.handleSubmit}>
-            <h3>Add a New Recipe</h3>
+            <h3 className="newrecipe-title">Add a New Recipe</h3>
             <div className="newrecipe-div">
               <label htmlFor="name">
                 Name:

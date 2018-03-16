@@ -93,7 +93,7 @@ export default class SingleRecipe extends Component {
           {showRecipes.map((recipe, index) => {
             return (
               <div key={index}>
-                <div className="rec-name">
+                <div className="recipe-name">
                   <p>{recipe.name}</p>
                 </div>
                 <div className="rec-img">

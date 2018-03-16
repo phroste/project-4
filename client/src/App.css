@@ -46,6 +46,7 @@ button {
   cursor: pointer;
 }
 
+/* Navigation bar styling */
 .login-bg {
   background-image: url("https://images.pexels.com/photos/691114/pexels-photo-691114.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb");
   background-size: cover;
@@ -94,15 +95,26 @@ button {
 .navbar {
   font-size: 2.5vw;
   color: white;
+  text-shadow: 0px 0px 24px rgba(0, 0, 0, .9);
   background-image: url("https://reactjs.org/logo-og.png");
   background-position: center;
-  padding: 17vh;
+  padding: 10vh;
 }
 
-.navbar > a {
+.navbar-links {
+  margin-top: 10vh;
+}
+
+.navbar > div > a {
   color: white;
   word-spacing: 2vw;
 }
+
+.navbar > div > .add-recipes-link {
+  word-spacing: 1vw;
+}
+/* Navigation bar styling */
+
 
 .recipe-name,
 .recipe-img,
@@ -125,8 +137,18 @@ button {
   text-shadow: 0px 0px 24px rgba(0, 0, 0, .5);
 }
 
+.rec-img > img {
+  box-shadow: 0px 0px 17px 3px rgba(0, 0, 0, .9);
+  margin-bottom: 5vh;
+}
+
 .rec-name {
-  
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.recipes-home {
+  color: black;
 }
 
 input {
@@ -150,6 +172,11 @@ input {
   font-size: 2.5vh;
   margin-top: 2vh;
   margin-bottom: 3vh;
+}
+
+.newrecipe-title {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
 
 .rec-img {

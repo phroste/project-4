@@ -93,8 +93,8 @@ export default class Recipes extends Component {
       return (
         <div className="recipes-page">
           <NavBar />
-          <h3>This is the Recipes page!</h3>
-          <h2><Link to="/recipes/new">Add a New Recipe</Link></h2>
+          {/*<h1>Recipes</h1>*/}
+          {/*<h2><Link to="/recipes/new">Add a New Recipe</Link></h2>*/}
           {/*{recipeNames}*/}
           {this.props.recipesData.map((recipe, index) => {
             return (
